@@ -3,13 +3,13 @@ AWS OpenSearch Snapshots Manager
 
 `aws-ossm` is a CLI tool created in python3 to simplify creation and management of S3 repositories for ElasticSearch on AWS.
 
-Install:
+### Install
 
 ```sh
 python3 -m pip install aws-ossm
 ```
 
-Explore:
+### Explore
 ```
 aws-ossm -h
 
@@ -33,10 +33,10 @@ options:
                         Disable SSL verification
 ```
 
-Add repository:
-*Note: you will need a role and a bucket created before with [official guide][guide]*
+### Add repository
+Note: *you will need a role and a bucket created with [official guide][guide]*
 ```sh
-aws-ossm aws-ossm repo-add my-repo-name '{
+aws-ossm aws-ossm --endpoint https://my-es-url repo-add my-repo-name '{
   "settings": {
     "bucket": "my-bucket-name",
     "region": "eu-central-1",
@@ -46,10 +46,11 @@ aws-ossm aws-ossm repo-add my-repo-name '{
 }'
 ```
 
-Take and restore snapshots:
+### Manage snapshots
 ```sh
-aws-ossm aws-ossm snap-save my-repo-name my-snapshot
-aws-ossm aws-ossm snap-load my-repo-name my-snapshot
+aws-ossm aws-ossm --endpoint https://my-es-url snap-save my-repo-name my-snapshot
+aws-ossm aws-ossm --endpoint https://my-es-url snap-list my-repo-name my-snapshot
+aws-ossm aws-ossm --endpoint https://my-es-url snap-load my-repo-name my-snapshot
 ```
 
 [guide]: https://docs.aws.amazon.com/opensearch-service/latest/developerguide/managedomains-snapshots.html
